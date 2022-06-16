@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+		go build
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+		go test test/server_test.go
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+		./go
+            }
+        }
+    }
+}
